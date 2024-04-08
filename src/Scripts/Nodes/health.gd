@@ -5,17 +5,24 @@ signal on_damaged
 signal on_regenerate
 
 enum RegenState {
-	active,  # For when the entity is regenerating
-	halted,  # For when the entity is temporarily not regenerating
-	stopped,  # For when the entity is never supposed to regenerate
+	## Entity can regenerate and does
+	active,
+	## Entity can regenerate, but (temporarily) doesn't
+	halted,
+	## Entity can't regenerate
+	stopped,
 }
 
+## Maximum amount of health the entity has by default
 @export var max_health: float = 20
+## Specify whether regeneration should be enabled or not
 @export var regen_state: RegenState = RegenState.active
+## Amount of health the entity regenerates every second (float)
 @export var regen_per_second: float = 0.1
+## Timer used to manage entity regeneration
 @export var timer: Timer
 var current_health: float = 20
-var halt_regen_time: int
+var halt_regen_time: int = 5  # Add default value in case someone sets RegenState to halted
 
 
 func _ready():
@@ -24,6 +31,7 @@ func _ready():
 	if regen_state != RegenState.stopped:
 		timer.start(1)  # only use timer if regen is active
 		timer.timeout.connect(_on_timer_timeout)
+
 
 func _on_timer_timeout():
 	if regen_state == RegenState.active:
@@ -35,6 +43,7 @@ func _on_timer_timeout():
 		halt_regen_time -= 1
 	
 	timer.start(1)  # restart timer (loop every second)
+
 
 func regenerate() -> void:
 	if current_health == max_health:
@@ -49,11 +58,13 @@ func regenerate() -> void:
 	
 	on_regenerate.emit()
 
+
 func halt_regen(time: int) -> void:
 	# Only halt regen if it is active (don't do anything otherwise) 
 	if regen_state == RegenState.active:
 		halt_regen_time = time
 		regen_state = RegenState.halted
+
 
 # ---------------- Utility functions ---------------- :
 func damage(attack: AttackNode) -> void:
@@ -69,19 +80,24 @@ func damage(attack: AttackNode) -> void:
 	current_health = health_after_damage  # update current health
 	halt_regen(5)  # wait 5 secs before restarting regen
 
+
 func heal(amount: float) -> void:
 	current_health += amount
+
 
 # ------ Getters and Setters  ------ :
 func get_current() -> float:
 	return current_health
 
+
 func get_max() -> float:
 	return max_health
+
 
 func set_current(amount: float) -> void:
 	# This function shouldn't be called (use damage() or heal() instead)
 	current_health = amount
+
 
 func set_max(amount: float) -> void:
 	if amount > 0:
