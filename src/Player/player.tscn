@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1aknqg4tj8a0"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_cb104"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2uh4"]
+size = Vector3(1, 1.5, 0.1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e5m10"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_cb104")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_p2uh4")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 150, 0, 0, 0, 100, 0, 0.75, 0)
+texture = SubResource("PlaceholderTexture2D_e5m10")
