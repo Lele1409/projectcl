@@ -36,6 +36,26 @@ func _on_timer_timeout():
 	
 	timer.start(1)  # restart timer (loop every second)
 
+func regenerate() -> void:
+	if current_health == max_health:
+		return  # skip unnecessary operations
+	
+	# make sure regen doesn't lead to exceeding of max_health
+	current_health = clamp(
+		0,
+		current_health + regen_per_second,
+		max_health
+	)
+	
+	on_regenerate.emit()
+
+func halt_regen(time: int) -> void:
+	# Only halt regen if it is active (don't do anything otherwise) 
+	if regen_state == RegenState.active:
+		halt_regen_time = time
+		regen_state = RegenState.halted
+
+# ---------------- Utility functions ---------------- :
 func damage(attack: AttackNode) -> void:
 	var health_after_damage: float = clamp(
 		0,  # health can't be negative
@@ -52,19 +72,6 @@ func damage(attack: AttackNode) -> void:
 func heal(amount: float) -> void:
 	current_health += amount
 
-func regenerate() -> void:
-	if current_health == max_health:
-		return  # skip unnecessary operations
-	
-	# make sure regen doesn't lead to exceeding of max_health
-	current_health = clamp(
-		0,
-		current_health + regen_per_second,
-		max_health
-	)
-	
-	on_regenerate.emit()
-
 # ------ Getters and Setters  ------ :
 func get_current() -> float:
 	return current_health
@@ -79,11 +86,3 @@ func set_current(amount: float) -> void:
 func set_max(amount: float) -> void:
 	if amount > 0:
 		max_health = amount
-
-func halt_regen(time: int) -> void:
-	# Only halt regen if it is active (don't do anything otherwise) 
-	if regen_state == RegenState.active:
-		halt_regen_time = time
-		regen_state = RegenState.halted
-
-
