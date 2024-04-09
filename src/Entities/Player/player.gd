@@ -11,8 +11,6 @@ var target_velocity = Vector3.ZERO
 
 
 func _physics_process(delta):
-	print(delta)
-	
 	# Handle character movement
 	update_target_velocity(delta)
 	velocity = target_velocity
