@@ -23,8 +23,8 @@ data = {
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_b1xxo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.294796, 1.78481, 0.503997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 7)
+transform = Transform3D(1, 0, 0, 0, 0.905857, 0.423583, 0, -0.423583, 0.905857, 0, 3.48816, 4.70724)
 current = true
