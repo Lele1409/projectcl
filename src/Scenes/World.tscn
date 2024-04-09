@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bivifd6s6aco"]
 
 [ext_resource type="MeshLibrary" uid="uid://d4msby5a3x2db" path="res://Assets/World/tiles.tres" id="1_1lmj8"]
-[ext_resource type="PackedScene" uid="uid://b1aknqg4tj8a0" path="res://Player/player.tscn" id="2_b1xxo"]
+[ext_resource type="PackedScene" uid="uid://b1aknqg4tj8a0" path="res://Entities/Player/player.tscn" id="2_b1xxo"]
 
 [sub_resource type="Environment" id="Environment_wvdke"]
 
