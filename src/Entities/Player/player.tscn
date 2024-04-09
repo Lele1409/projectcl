@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b1aknqg4tj8a0"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_cb104"]
-[ext_resource type="PackedScene" uid="uid://cm8vvjxhek5ea" path="res://Components/Health.tscn" id="2_abbk3"]
-[ext_resource type="PackedScene" uid="uid://b6nk2iutlq3f4" path="res://Components/Attack.tscn" id="3_j7ofj"]
+[ext_resource type="PackedScene" uid="uid://cm8vvjxhek5ea" path="res://Components/Health/health.tscn" id="2_abbk3"]
+[ext_resource type="PackedScene" uid="uid://b6nk2iutlq3f4" path="res://Components/Attack/attack.tscn" id="3_j7ofj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2uh4"]
 size = Vector3(1, 1.5, 0.1)
