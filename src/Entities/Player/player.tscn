@@ -20,10 +20,7 @@ shape = SubResource("BoxShape3D_p2uh4")
 transform = Transform3D(100, 0, 0, 0, 150, 0, 0, 0, 100, 0, 0.75, 0)
 texture = SubResource("PlaceholderTexture2D_e5m10")
 
-[node name="Health" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_abbk3")]
-timer = NodePath("RegenTimer")
-
-[node name="RegenTimer" type="Timer" parent="Health"]
+[node name="Health" parent="." instance=ExtResource("2_abbk3")]
 
 [node name="Attacks" type="Node" parent="."]
 

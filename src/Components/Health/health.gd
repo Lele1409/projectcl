@@ -19,30 +19,30 @@ enum RegenState {
 @export var regen_state: RegenState = RegenState.active
 ## Amount of health the entity regenerates every second (float)
 @export var regen_per_second: float = 0.1
-## Timer used to manage entity regeneration
-@export var timer: Timer
 var current_health: float = 20
 var halt_regen_time: int = 5  # Add default value in case someone sets RegenState to halted
+var regen_timer: Timer = Timer.new()
 
 
 func _ready():
 	current_health = 10
 	
 	if regen_state != RegenState.stopped:
-		timer.start(1)  # only use timer if regen is active
-		timer.timeout.connect(_on_timer_timeout)
+		add_child(regen_timer)  # add child to health node
+		
+		regen_timer.timeout.connect(regen_loop)
+		regen_timer.start(1.0)  # start timer
 
 
-func _on_timer_timeout():
+func regen_loop():
+	print("test")
 	if regen_state == RegenState.active:
-		regenerate()  # regen if active
+		regen_timer.start(1.0)
 	
 	elif regen_state == RegenState.halted:
 		if halt_regen_time <= 0:  # check if leq in case a call is skipped
 			regen_state = RegenState.active
 		halt_regen_time -= 1
-	
-	timer.start(1)  # restart timer (loop every second)
 
 
 func regenerate() -> void:
