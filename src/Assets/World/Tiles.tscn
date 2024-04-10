@@ -1,25 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt8be3uu3327y"]
+[gd_scene load_steps=2 format=3 uid="uid://dt8be3uu3327y"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sjssa"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ols8"]
-albedo_color = Color(0.372549, 0.72549, 0, 1)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ck32h"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7mswr"]
+[ext_resource type="PackedScene" uid="uid://bhg6kw0qu6c8n" path="res://Assets/World/tiles/grass -col.glb" id="1_tl2n0"]
 
 [node name="Tiles" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.479244, 0, 0)
 
-[node name="Blocks" type="Node3D" parent="."]
-
-[node name="Grass" type="MeshInstance3D" parent="Blocks"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
-mesh = SubResource("BoxMesh_sjssa")
-surface_material_override/0 = SubResource("StandardMaterial3D_7ols8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Blocks/Grass"]
-physics_material_override = SubResource("PhysicsMaterial_ck32h")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Blocks/Grass/StaticBody3D"]
-shape = SubResource("BoxShape3D_7mswr")
+[node name="grass" parent="." instance=ExtResource("1_tl2n0")]
