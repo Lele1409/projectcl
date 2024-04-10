@@ -35,7 +35,6 @@ func _ready():
 
 
 func regen_loop():
-	print("test")
 	if regen_state == RegenState.active:
 		regen_timer.start(1.0)
 	
